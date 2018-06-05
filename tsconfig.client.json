@@ -13,7 +13,8 @@
     "config",
     "test",
     "typings",
-    "dist"
+    "dist",
+    "app.ts"
   ],
   "typeRoots": ["node_modules/@types"]
 }
