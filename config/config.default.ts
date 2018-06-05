@@ -1,11 +1,11 @@
-"use strict";
+'use strict';
 
-import { EggAppConfig, PowerPartial } from "egg";
+import { EggAppConfig, PowerPartial } from 'egg';
 // import * as fs from "fs";
-import * as path from "path";
+import * as path from 'path';
 
 // for config.{env}.ts
-import { staticDirectory } from "./config.data";
+import { staticDirectory } from './config.data';
 export type DefaultConfig = PowerPartial<EggAppConfig & BizConfig>;
 
 // app special config scheme
@@ -20,7 +20,6 @@ export interface BizConfig {
 export default (appInfo: EggAppConfig) => {
 
   const config = {} as PowerPartial<EggAppConfig> & BizConfig;
-
 
   // app special config
   config.sourceUrl = `https://github.com/eggjs/examples/tree/master/${
@@ -39,16 +38,18 @@ export default (appInfo: EggAppConfig) => {
 
   config.news = {
     pageSize: 30,
-    serverUrl: "https://hacker-news.firebaseio.com/v0",
+    serverUrl: 'https://hacker-news.firebaseio.com/v0',
   };
 
   // override config from framework / plugin
-  config.keys = appInfo.name + "123456";
+  config.keys = appInfo.name + '123456';
 
   config.view = {
-    defaultViewEngine: "nunjucks",
+    defaultViewEngine: 'nunjucks',
     mapping: {
-      ".tpl": "nunjucks",
+      '.tpl': 'nunjucks',
+      '.nj': 'nunjucks',
+      '.html': 'nunjucks',
     },
   };
 
