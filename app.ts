@@ -6,5 +6,6 @@ export default (app) => {
         await Promise.resolve('egg + ts');
     });
 
+    // 启动执行勾子
     app.onApplicationStart();
 };

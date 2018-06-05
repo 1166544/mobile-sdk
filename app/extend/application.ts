@@ -11,12 +11,21 @@ export default {
     },
 
     /**
+     * 是否生产环境
+     */
+    get isProd(this: Application): boolean {
+        return this.config.env === 'prod';
+    },
+
+    /**
      * 启动预定义事件
      * @param this 
      */
     onApplicationStart(this: Application) {
-        this.on('server', (server: any) => {
-            console.log('server restart', server);
-        });
+        if (!this.isProd) {
+            this.on('server', (server: any) => {
+                console.log('server restart', server);
+            });
+        }
     },
 };
