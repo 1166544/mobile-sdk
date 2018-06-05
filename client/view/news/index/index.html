@@ -1,0 +1,23 @@
+{# 父模版 #}
+{% extends "../../common/core/tmpl/layout-base.html" %}
+
+{# 样式插入标记 #}
+{% block headEnd %}
+</head>
+{% endblock %}
+
+{# 子页内容 #}
+{% block content %}
+
+<div style="font-size:18px;">新闻首页</div>
+
+{# 引入片断 #}
+{% include '../common/item-a/tmpl/item-a.html' %}
+{% include '../common/item-b/tmpl/item-b.html' %}
+
+{% endblock %}
+
+{# JS插入标记位 #}
+{% block bodyEnd %}
+</body>
+{% endblock %}

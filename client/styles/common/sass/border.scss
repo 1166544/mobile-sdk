@@ -1,0 +1,131 @@
+@import "./base.scss";
+
+/*border_00.css*/
+
+.border_00 {
+    text-align: left;
+    padding: 0;
+    position: relative;
+    width: 100%;
+    .border_00-topr {
+        height: 50px;
+        line-height: 50px;
+    }
+    .border_00-topl {
+        height: 50px;
+        line-height: 50px;
+    }
+    .border_00-mid {
+        border-top: none;
+        width: 100%;
+    }
+    .borderContent {
+        padding: 5px 0px;
+    }
+    .comptitle_00 {
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        width: 98%;
+        h2 {
+            font-size: 18px;
+            color: #4c4c4c;
+            height: 50px;
+            line-height: 50px;
+            strong {
+                font-weight: bold;
+            }
+        }
+    }
+}
+
+
+/*border_01.css*/
+
+.border_01 {
+    text-align: left;
+    padding: 0;
+    position: relative;
+    width: 100%;
+    .border_01-topr {
+        height: 125px;
+        line-height: 125px;
+        background: url('#{$base_img_border}/border_01/border_bj.png') left center repeat-x;
+    }
+    .border_01-topl {
+        height: 125px;
+        line-height: 125px;
+    }
+    .border_01-mid {
+        border-top: none;
+        width: 100%;
+    }
+    .borderContent {
+        padding: 5px 0px;
+    }
+    .comptitle_01 {
+        /* height: 20px; */
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        width: 98%;
+        text-align: center;
+        h2 {
+            font-size: 30px;
+            color: #595959;
+            height: 125px;
+            line-height: 125px;
+            display: inline-block;
+            *display: inline;
+            padding: 0px 65px;
+            background: #f8f8f8;
+            strong {
+                font-weight: bold;
+            }
+        }
+    }
+}
+
+
+/*border_02.css*/
+
+.border_02 {
+    text-align: left;
+    padding: 0;
+    position: relative;
+    width: 100%;
+    .border_02-topr {
+        height: 100px;
+        line-height: 100px;
+    }
+    .border_02-topl {
+        height: 100px;
+        line-height: 100px;
+    }
+    .border_02-mid {
+        border-top: none;
+        width: 100%;
+    }
+    .borderContent {
+        padding: 5px 0px;
+    }
+    .comptitle_02 {
+        /* height: 20px; */
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        width: 98%;
+        text-align: center;
+        h2 {
+            font-size: 26px;
+            color: #595959;
+            height: 66px;
+            line-height: 66px;
+            display: inline-block;
+            background: url('#{$base_img_border}/border_02/border_bj.png') bottom center no-repeat;
+            strong {
+                font-weight: bold;
+            }
+        }
+    }
+}

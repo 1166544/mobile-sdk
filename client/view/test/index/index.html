@@ -1,0 +1,23 @@
+{# 父模版 #}
+{% extends "../../../common/core/tmpl/layout-base.html" %}
+
+{# 样式插入标记 #}
+{% block headEnd %}
+</head>
+{% endblock %}
+
+{# 子页内容 #}
+{% block content %}
+
+    <div style="font-size:18px;">详情内容</div>
+	<div>pomelott template</div>
+	<div id="less">less test</div>
+	<div id="sass">sass test</div>
+	<img src="../../../images/common/about/edit.png">
+
+{% endblock %}
+
+{# JS插入标记位 #}
+{% block bodyEnd %}
+</body>
+{% endblock %}

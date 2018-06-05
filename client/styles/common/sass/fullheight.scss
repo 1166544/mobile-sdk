@@ -1,0 +1,12 @@
+html,body{
+    height: 100% !important;
+    overflow: hidden;
+    .container{
+    height: 100% !important;
+    }
+}
+.main-footer{
+    margin-top: -302px !important;
+    position: relative;
+    z-index: 10;
+}

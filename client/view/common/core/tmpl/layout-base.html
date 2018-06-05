@@ -1,0 +1,35 @@
+  <!DOCTYPE html>
+  <html>
+      {% block headStart %}
+      <head>
+      {% endblock %}
+
+      {% block headEnd %}
+      </head>
+      {% endblock %} 
+
+
+      {% block bodyStart %}
+      <body>
+      {% endblock %}
+      
+          {% block headerContent %}
+              {% include '../../header/tmpl/header.html' %}
+          {% endblock %} 
+
+          {% block content %}
+          {% endblock %}
+
+          {% block footer %}
+              {% include '../../footer/tmpl/footer.html' %}
+          {% endblock %}
+
+      {% block bodyEnd %}
+      </body>
+      {% endblock %}
+
+  {% block htmlEnd %}
+  </html>
+  {% endblock %}
+
+{% endif %}
