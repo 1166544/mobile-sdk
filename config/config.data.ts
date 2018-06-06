@@ -1,1 +1,1 @@
-export const staticDirectory = "publicSources";
+export const staticDirectory = 'publicSources';
