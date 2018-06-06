@@ -53,26 +53,6 @@ export default (appInfo: EggAppConfig) => {
     },
   };
 
-  config.io = {
-    init: { test: 'test' }, // passed to engine.io
-    namespace: {
-      '/': {
-        connectionMiddleware: [ 'auth' ],
-        packetMiddleware: [ 'filter' ],
-      },
-      '/chat': {
-        connectionMiddleware: [ 'auth' ],
-        packetMiddleware: [],
-      },
-      // redis: {
-      //   host: { redis server host },
-      //   port: { redis server prot },
-      //   auth_pass: { redis server password },
-      //   db: 0,
-      // }
-    },
-  };
-
   // config.siteFile = {
   //   "/favicon.ico": fs.readFileSync(
   //     path.join(appInfo.baseDir, `app/${staticDirectory}/favicon.png`),
