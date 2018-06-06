@@ -50,12 +50,15 @@ function processSocket() {
     socket.on("connect", (e) => {
         console.log("连接成功 ", e);
 
-        const chatStr = "hello world!";
+        const chatStr = "request::reload";
         console.log("发送消息", chatStr);
         socket.emit("chat", chatStr);
     });
 
     socket.on("res", msg => {
-        console.log("res from server: %s!", msg);
+        if (msg && msg.reload) {
+            console.log(msg.message);
+            browserSync.reload();
+        }
     });
 }

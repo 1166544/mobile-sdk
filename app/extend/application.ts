@@ -22,10 +22,10 @@ export default {
      * @param this 
      */
     onApplicationStart(this: Application) {
-        if (!this.isProd) {
-            this.on('server', (server: any) => {
-                console.log('server restart', server);
-            });
-        }
+        // if (!this.isProd) {
+        //     this.on('server', (server: any) => {
+        //         console.log('server restart', server.keepAliveTimeout);
+        //     });
+        // }
     },
 };
