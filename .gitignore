@@ -22,3 +22,4 @@ app/view
 .history
 dist/*
 app/publicSources
+package-lock.json
