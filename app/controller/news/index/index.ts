@@ -22,7 +22,7 @@ export default class NewsIndexController extends Controller {
     // );
 
     // 传入页面数据
-    const pageData: any = { list: ['newsList'], page, pageSize };
+    const pageData: any = { list: ['newsList'], page, pageSize, testStr: 'this is test string too!' };
 
     // 渲染页面模板
     await this.ctx.render('news/index/index.html', pageData);

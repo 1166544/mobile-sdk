@@ -33,20 +33,11 @@ class SyncProcessor {
     processBrowserSync() {
         bs = require("browser-sync").create();
         bs.init({
-            files: [],
+            files: ['app/publicSources/**', 'app/view/**'],
             host: "localhost",
             open: false,
-            prot: 8088,
-            proxy: {
-                reqHeaders: (config) => {
-                    return {
-                        "accept-encoding": "identity",
-                        "agent":           false,
-                        "host":            "localhost",
-                    };
-                },
-                target: "localhost:7001",
-            },
+            port: 8088,
+            proxy: "localhost:7001"
         });
     }
 
@@ -55,10 +46,7 @@ class SyncProcessor {
      */
     processSocket() {
         socket.on("connect", (e) => {
-            console.log("连接成功 ", e);
-
             const chatStr = " request::reload";
-            console.log("发送消息", chatStr);
             socket.emit("chat", chatStr);
         });
 
