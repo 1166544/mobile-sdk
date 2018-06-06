@@ -1,9 +1,12 @@
 "use strict";
-const browserSync = require("browser-sync");
 const childProcess = require("child_process");
 const workerProcess = childProcess.exec("npm run webpack", {});
 const socket = require("socket.io-client")("http://127.0.0.1:7001");
+let bs = null;
 
+/**
+ * 本地dev打包处理器
+ */
 class SyncProcessor {
 
     constructor() {
@@ -16,10 +19,10 @@ class SyncProcessor {
      * 处理打包
      */
     processWebpack() {
-        workerProcess.stdout.on("data", function(data) {
+        workerProcess.stdout.on("data", (data) => {
             console.log("stdout: " + data);
         });
-        workerProcess.stderr.on("data", function(data) {
+        workerProcess.stderr.on("data", (data) => {
             console.log("stderr: " + data);
         });
     }
@@ -28,13 +31,14 @@ class SyncProcessor {
      * Browsersync
      */
     processBrowserSync() {
-        browserSync({
+        bs = require("browser-sync").create();
+        bs.init({
             files: [],
             host: "localhost",
             open: false,
             prot: 8088,
             proxy: {
-                reqHeaders: function(config) {
+                reqHeaders: (config) => {
                     return {
                         "accept-encoding": "identity",
                         "agent":           false,
@@ -61,7 +65,7 @@ class SyncProcessor {
         socket.on("res", msg => {
             if (msg && msg.reload) {
                 console.log(msg.message);
-                browserSync.reload();
+                bs.reload("*.html");
             }
         });
     }
