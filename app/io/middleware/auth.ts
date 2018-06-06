@@ -4,7 +4,7 @@ export default function authMiddleware() {
   return async (ctx: Context, next: any) => {
     // 输出连接信息
     // ctx.socket.emit('res', '建立连接');
-    console.log('dev connected.', ctx.request.url);
+    console.log('Dev client connected.', ctx.request.url);
 
     // 从服务层拿信息
     // const say = await ctx.service.user.say();

@@ -13,7 +13,7 @@ export default function filterMiddleware() {
     // const say = await ctx.service.user.say();
 
     // 向客户端发送数据
-    ctx.socket.emit('res', {reload: true, message: 'server has received your message: ' + ctx['packet']});
+    ctx.socket.emit('res', {reload: true, message: 'The server has received your message: ' + ctx['packet']});
     
     // 执行下一条信息
     await next();

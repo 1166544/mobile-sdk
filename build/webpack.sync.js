@@ -57,7 +57,7 @@ class SyncProcessor {
         socket.on("connect", (e) => {
             console.log("连接成功 ", e);
 
-            const chatStr = "request::reload";
+            const chatStr = " request::reload";
             console.log("发送消息", chatStr);
             socket.emit("chat", chatStr);
         });
