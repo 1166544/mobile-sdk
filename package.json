@@ -6,8 +6,8 @@
     "dev": "webpack-dev-server --mode development --inline --hot",
     "build": "npm run build-serve && npm run build-client",
     "start": "egg-scripts start",
-    "client": "npm run webpack & npm run sync",
-    "serve": "egg-bin dev -r egg-ts-helper/register",
+    "client": "npm run sync",
+    "serve": "cross-env NODE_ENV=local http_proxy=http://127.0.0.1:8888 egg-bin dev --cluster 1 -r egg-ts-helper/register",
     "debug": "egg-bin debug -r egg-ts-helper/register",
     "test-local": "egg-bin test -r egg-ts-helper/register",
     "test": "npm run lint -- --fix && npm run test-local",
@@ -33,6 +33,7 @@
   "author": "James Liauw",
   "license": "ISC",
   "dependencies": {
+    "cross-env": "^5.1.6",
     "egg": "^2.8.1",
     "egg-scripts": "^2.6.0",
     "egg-socket.io": "^4.0.8",
