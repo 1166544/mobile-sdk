@@ -42,3 +42,9 @@ $ npm start
 - Node.js 8.x
 - Typescript 2.8+
 
+### 打包路径简短调用
+path_components // 公共组件目录
+path_images // 公共资源目录
+path_styles // 公共样式目录
+path_view   // 模板目录
+

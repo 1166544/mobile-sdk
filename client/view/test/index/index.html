@@ -3,6 +3,8 @@
 
 {# 样式插入标记 #}
 {% block headEnd %}
+<link href='http://fonts.useso.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+<link href='http://fonts.useso.com/css?family=Lato:400,100,100italic,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
 </head>
 {% endblock %}
 
@@ -19,5 +21,11 @@
 
 {# JS插入标记位 #}
 {% block bodyEnd %}
+<script type="text/javascript" src="/publicSources/assets/simple-cart/simpleCart.min.js"></script>
+<script type="text/javascript" src="/publicSources/assets/bootstrap/bootstrap-3.1.1.min.js"></script>
+<script type="text/javascript" src="/publicSources/assets/wow/wow.min.js"></script>
+<script>
+ new WOW().init();
+</script>
 </body>
 {% endblock %}
