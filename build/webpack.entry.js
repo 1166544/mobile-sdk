@@ -9,7 +9,7 @@ class WebpackEntryProcessor {
 
     constructor() {
         // 文件列表
-        this.fileList = glob.sync("client/view/**/*.html");
+        this.fileList = glob.sync("client/view/**/*.ts");
 
         // 模板文件目录路径
         this.pathDir = 'client/view/';
