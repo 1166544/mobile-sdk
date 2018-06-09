@@ -14,7 +14,8 @@ class OptimizationProcessor {
      */
     getConfig() {
         const entries = entryPlugin.getConfig();
-        const chunks = Object.keys(entries)
+        const chunks = Object.keys(entries);
+
         return {
             runtimeChunk: 'single',
             splitChunks: {

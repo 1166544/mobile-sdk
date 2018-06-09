@@ -9,6 +9,7 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const HtmlWebpackCommonLibsPlugin = require('./webpack.inject');
+const entryPlugin = require('./webpack.entry');
 
 class PluginProcessor {
     constructor() {
@@ -80,29 +81,24 @@ class PluginProcessor {
      */
     getMultiTemplate() {
         const pluginList = [];
-        const pageList = glob.sync("client/view/**/*.html");
+        const entry = entryPlugin.getConfig();
+        const pageList = Object.keys(entry);
 
         pageList.forEach((pathName) => {
-            
-            const fileName = pathName.replace(/client\//g, '');
-            const scriptPreName = pathName.replace(/client\/view\//g, '');
-            const scriptName = scriptPreName.replace(/\.html/g, '.js');
             const conf = {
-                // 生成的html存放路径，相对于path
-                filename: '../' + fileName, 
-
-                // html模板路径
-                template: pathName, 
-
-                // js插入的位置，true/'head'/'body'/false
-                inject: false, 
-
-                // favicon: path.resolve(__dirname, pathConfig.faviconPath);
-                inject: 'body',
-                chunks: ['vendors', `/publicSources/scripts/${scriptName}`],
-                hash: true
+                filename: '../view/' + pathName + '.html', // 生成的html存放路径，相对于path
+                template: this.templateSourcePath + pathName + '.html', // html模板路径
+                inject: false, // js插入的位置，true/'head'/'body'/false
+    
             };
     
+            // 每个模板页面插入配置
+            if (pathName in entry) {
+                // conf.favicon = path.resolve(__dirname, pathConfig.faviconPath);
+                conf.inject = 'body';
+                conf.chunks = ['vendors', pathName];
+                conf.hash = true;
+            }
             pluginList.push(new HtmlWebpackPlugin(conf));
             pluginList.push(new HtmlWebpackCommonLibsPlugin({
                 paths: [`/publicSources/scripts/common/libs/libs.js`]
