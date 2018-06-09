@@ -9,7 +9,6 @@ logs/
 .vscode
 *.swp
 *.lock
-*.js
 typings
 app/**/*.js
 test/**/*.js

@@ -1,0 +1,6 @@
+{
+  "name": "libs_library",
+  "content": {
+    "./node_modules/.1.12.4@jquery/dist/jquery.js": 1
+  }
+}
