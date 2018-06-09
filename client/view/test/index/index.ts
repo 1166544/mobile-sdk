@@ -7,12 +7,12 @@ import './index.css';
 // 当前页面逻辑
 export default class TestIndex {
     constructor() {
-        window.addEventListener('load', () => {
+        addEventListener('load', () => {
             setTimeout(this.hideURLbar, 0); 
         }, false);
     }
 
     public hideURLbar(): void { 
-        window.scrollTo(0, 1);    
+        scrollTo(0, 1);    
     }
 }
