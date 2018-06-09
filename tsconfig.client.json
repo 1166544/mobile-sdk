@@ -22,7 +22,9 @@
     "test",
     "typings",
     "dist",
-    "app.ts"
+    "app.ts",
+    "app/publicSources",
+    "app/view"
   ],
   "typeRoots": ["node_modules/@types"]
 }

@@ -24,7 +24,7 @@
   },
   "exclude": [
     "app/public",
-    "app/views",
+    "app/view",
     "client",
     "dist",
     "app/publicSources"
