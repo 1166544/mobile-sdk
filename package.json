@@ -14,7 +14,7 @@
     "cov": "egg-bin cov -r egg-ts-helper/register",
     "build-client": "webpack --config ./webpack.prod.js --mode production",
     "build-serve": "ets && tsc -p tsconfig.json",
-    "webpack": "webpack --mode=development --config=./webpack.dev.js --watch --progress --display=minimal --colors --display-error-details",
+    "webpack": "webpack --mode=development --config=./webpack.dev.js --watch --progress --display=normal --colors --display-error-details",
     "sync": "node ./build/webpack.sync.js",
     "tsc": "ets && tsc -p tsconfig.json",
     "ci": "npm run lint && npm run cov && npm run tsc",
