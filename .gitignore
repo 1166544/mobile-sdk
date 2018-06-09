@@ -17,9 +17,9 @@ config/**/*.js
 app/**/*.map
 test/**/*.map
 config/**/*.map
-app/public
-app/view
-.history
+app/public/
+app/view/
+.history/
 dist/*
 app/publicSources
 package-lock.json
