@@ -81,7 +81,7 @@ class PluginProcessor {
      */
     getMultiTemplate() {
         const pluginList = [];
-        const entry = entryPlugin.getConfig();
+        const entry = entryPlugin.getConfig('client/view/**/*.html');
         const pageList = Object.keys(entry);
 
         pageList.forEach((pathName) => {

@@ -13,7 +13,7 @@ class OptimizationProcessor {
      * splitChunks配置
      */
     getConfig() {
-        const entries = entryPlugin.getConfig();
+        const entries = entryPlugin.getConfig('client/view/**/*.ts');
         const chunks = Object.keys(entries);
 
         return {

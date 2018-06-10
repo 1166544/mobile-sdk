@@ -23,7 +23,8 @@ class WebpackEntryProcessor {
     /**
      * 获取多页面JS罗辑打包入口
      */
-    getConfig() {
+    getConfig(fileUrl) {
+        this.fileList = glob.sync(fileUrl);
         // 生成格式内容类似:
         // {
         //     a: "./client/view/about/index/index.ts",

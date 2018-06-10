@@ -12,7 +12,7 @@ const optimiziationConfig = require("./build/webpack.optimization");
 module.exports = {
 
     // 入口
-    entry: entryConfig.getConfig(),
+    entry: entryConfig.getConfig('client/view/**/*.ts'),
 
     // 输出JS文件位置
     output: outputConfig.getConfig(),
