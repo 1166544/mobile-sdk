@@ -2,7 +2,7 @@
 
 class DevToolProcessor {
     constructor() {
-        // hole 
+        // hole
     }
 
     getConfig() {
