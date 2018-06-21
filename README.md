@@ -33,8 +33,8 @@ $ npm start
 
 ### Npm Scripts
 
-- Use `npm run lint` to check code style
-- Use `npm test` to run unit test
+- Use `npm run lint` to check code style 
+- Use `npm test` to run unit test 
 - se `npm run clean` to clean compiled js at development mode once
 
 ### Requirement
