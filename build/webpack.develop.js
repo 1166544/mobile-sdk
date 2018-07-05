@@ -7,7 +7,7 @@ const path = require("path");
 class DevelopProcessor {
     constructor() {
         // hole 
-    }
+    } 
 
     /**
      * 本地开发服配置
