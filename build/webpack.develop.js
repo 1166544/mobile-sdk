@@ -2,7 +2,7 @@
 const path = require("path");
 
 /**
- * 本地开发服配置
+ * 本地开发服配置 
  */
 class DevelopProcessor {
     constructor() {
