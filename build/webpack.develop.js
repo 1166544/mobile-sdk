@@ -6,7 +6,7 @@ const path = require("path");
  */
 class DevelopProcessor {
     constructor() {
-        // hole 
+        // hole  
     } 
 
     /**
@@ -15,7 +15,7 @@ class DevelopProcessor {
     getConfig() {
         return {
             contentBase: path.resolve(__dirname, "../app/publicSources"),
-            host: "localhost",
+            host: "localhost", 
             hot: false,
             inline: true,
             open: true,
