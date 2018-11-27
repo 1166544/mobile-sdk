@@ -42,6 +42,8 @@ class SocketManager {
 		if (!this.clientList.has(id)) {
 			this.clientList.set(id, client);
 			console.log('Connected!', id)
+		} else {
+			console.log('Add client id:', id, 'has exist!');
 		}
 	}
 
@@ -57,6 +59,8 @@ class SocketManager {
 		if (this.clientList.has(id)) {
 			this.clientList.delete(id);
 			console.log('Disconnect!', id);
+		} else {
+			console.log('Destroy id:', id, 'not exist!');
 		}
 	}
 
@@ -90,6 +94,25 @@ class SocketManager {
 		this.clientList.forEach((value, key, mapObj) => {
 			if (value && key === id) {
 				value.emit(channel, message);
+			} else {
+				console.log('Broad to client id:', id, 'not exist!');
+			}
+		});
+	}
+
+	/**
+	 * 主动断开某个客户端
+	 *
+	 * @param {*} id
+	 * @memberof SocketManager
+	 */
+	disconnectClient(id) {
+		this.clientList.forEach((value, key, mapObj) => {
+			if (value && key === id) {
+				value.disconnect();
+				console.log('DisconnectClient client id:', id, 'successfully!');
+			} else {
+				console.log('DisconnectClient client id:', id, 'not exist!');
 			}
 		});
 	}
