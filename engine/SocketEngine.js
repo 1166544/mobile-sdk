@@ -2,6 +2,7 @@ const socketRequest = Symbol('Application#socketRequest');
 const socketResponse = Symbol('Application#socketResponse');
 
 class SocketEngine {
+
 	/**
 	 * 响应请求
 	 *

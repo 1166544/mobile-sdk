@@ -135,6 +135,7 @@ class SocketManager {
 	disconnectClient(id) {
 		this.clientList.forEach((value, key, mapObj) => {
 			if (value && key === id) {
+				this.destroyClient(value);
 				value.disconnect();
 				this.logger.info('DisconnectClient client id:', id, 'successfully!');
 			} else {
@@ -183,7 +184,7 @@ class SocketManager {
 			}
 		}
 
-		if (isLegal) {
+		if (!isLegal) {
 			ctx.logger.info('Sign illegal..', packet);
 		}
 
