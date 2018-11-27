@@ -7,7 +7,7 @@ module.exports = app => {
 			const message = this.ctx.args[0];
 			console.log(
 				SocketEngine.REQUEST_MESSAGE + ' :',
-				message + ' : ' + process.pid
+				JSON.stringify(message) + ' : ' + process.pid
 			);
 
 			// 向当前用户端发送消息
