@@ -1,5 +1,6 @@
 const socketList = Symbol('Application#socketList');
 const loggerSymble = Symbol('Application#loggerSybs');
+const md5 = require('crypto-md5');
 
 class SocketManager {
 	constructor() {
@@ -154,6 +155,39 @@ class SocketManager {
 		if (client && channel && message) {
 			client.broadcast.emit(channel, message);
 		}
+	}
+
+	/**
+	 * 数据合法性校验
+	 *
+	 * @param {*} ctx
+	 * @memberof SocketManager
+	 */
+	checkLegal(ctx) {
+		const socketConfig = ctx.app.config.socketConfig;
+		const packet = ctx.packet;
+		let isLegal = false;
+
+		if (packet && packet.length > 0) {
+			const packageData = packet[1];
+
+			if (packageData && socketConfig && packageData.meta && packageData.meta.sign && packageData.meta.app && packageData.meta.timestamp) {
+				const appName = packageData.meta.app;
+				const signConfigData = socketConfig[appName];
+				const verifyStr = `${appName}${signConfigData.key}${packageData.meta.timestamp}`;
+				const signString = md5(verifyStr, 'hex');
+
+				if (signString === packageData.meta.sign) {
+					isLegal = true;
+				}
+			}
+		}
+
+		if (isLegal) {
+			ctx.logger.info('Sign illegal..', packet);
+		}
+
+		return isLegal;
 	}
 }
 
