@@ -1,13 +1,14 @@
 'use strict';
 const SocketEngine = require('../../engine/SocketEngine');
+const socketManager = require('../../engine/SocketManager');
 
 module.exports = () => {
 	return async (ctx, next) => {
-		const say = await ctx.service.user.say();
-
-		ctx.socket.emit(SocketEngine.RESPONSE_MESSAGE, 'auth! ' + say);
+		const id = ctx.socket.id;
+		ctx.socket.emit(SocketEngine.RESPONSE_MESSAGE, `${id} auth! connected!`);
+		socketManager.addClient(ctx.socket);
 
 		await next();
-		console.log('disconnect!');
+		socketManager.destroyClient(ctx.socket);
 	};
 };

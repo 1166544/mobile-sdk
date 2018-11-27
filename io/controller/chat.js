@@ -13,7 +13,7 @@ module.exports = app => {
 			const say = await this.ctx.service.user.say();
 
 			// 向前用户端发送消息
-			this.ctx.socket.emit(SocketEngine.RESPONSE_MESSAGE, say);
+			this.ctx.socket.emit(SocketEngine.RESPONSE_MESSAGE, say + this.ctx.socket.id);
 
 			// 向所有用户广播消息
 			this.ctx.socket.broadcast.emit(
