@@ -1,4 +1,5 @@
 const socketList = Symbol('Application#socketList');
+const loggerSymble = Symbol('Application#loggerSybs');
 
 class SocketManager {
 	constructor() {
@@ -17,6 +18,30 @@ class SocketManager {
 		}
 
 		return this[socketList];
+	}
+
+	/**
+	 * 日志引用
+	 *
+	 * @readonly
+	 * @memberof SocketManager
+	 */
+	get logger() {
+		if (!this[loggerSymble]) {
+			this[loggerSymble] = console;
+		}
+
+		return this[loggerSymble];
+	}
+
+	/**
+	 * 日志引用
+	 *
+	 * @readonly
+	 * @memberof SocketManager
+	 */
+	set logger(value) {
+		this[loggerSymble] = value;
 	}
 
 	/**
@@ -41,9 +66,9 @@ class SocketManager {
 
 		if (!this.clientList.has(id)) {
 			this.clientList.set(id, client);
-			console.log('Connected!', id)
+			this.logger.info('Connected!', id)
 		} else {
-			console.log('Add client id:', id, 'has exist!');
+			this.logger.info('Add client id:', id, 'has exist!');
 		}
 	}
 
@@ -58,9 +83,9 @@ class SocketManager {
 
 		if (this.clientList.has(id)) {
 			this.clientList.delete(id);
-			console.log('Disconnect!', id);
+			this.logger.info('Disconnect!', id);
 		} else {
-			console.log('Destroy id:', id, 'not exist!');
+			this.logger.info('Destroy id:', id, 'not exist!');
 		}
 	}
 
@@ -95,7 +120,7 @@ class SocketManager {
 			if (value && key === id) {
 				value.emit(channel, message);
 			} else {
-				console.log('Broad to client id:', id, 'not exist!');
+				this.logger.info('Broad to client id:', id, 'not exist!');
 			}
 		});
 	}
@@ -110,9 +135,9 @@ class SocketManager {
 		this.clientList.forEach((value, key, mapObj) => {
 			if (value && key === id) {
 				value.disconnect();
-				console.log('DisconnectClient client id:', id, 'successfully!');
+				this.logger.info('DisconnectClient client id:', id, 'successfully!');
 			} else {
-				console.log('DisconnectClient client id:', id, 'not exist!');
+				this.logger.info('DisconnectClient client id:', id, 'not exist!');
 			}
 		});
 	}
