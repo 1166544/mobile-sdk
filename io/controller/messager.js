@@ -7,7 +7,7 @@ module.exports = app => {
 	class Controller extends app.Controller {
 		async index() {
 			const message = this.ctx.args[0];
-			console.log(
+			this.ctx.logger.info(
 				SocketEngine.REQUEST_MESSAGE + ' :',
 				JSON.stringify(message) + ' : ' + process.pid
 			);
@@ -42,8 +42,6 @@ module.exports = app => {
 			// 	SocketEngine.RESPONSE_MESSAGE,
 			// 	this.ctx.helper.parseExchangeMsg('this is broadcast message')
 			// );
-
-			// 向指定用户发送消息
 		}
 	}
 	return Controller;
