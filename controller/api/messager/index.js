@@ -1,6 +1,8 @@
 'use strict';
 
 const Controller = require('egg').Controller;
+const socketManager = require('../../../engine/SocketManager');
+const SocketEngine = require('../../../engine/SocketEngine');
 
 class MessagerController extends Controller {
 
@@ -22,6 +24,13 @@ class MessagerController extends Controller {
 
 		// 校验参数
 		ctx.validate(createRule);
+
+		// 发送给指定客户端
+		socketManager.broadcastToClient(
+			ctx.request.body.target,
+			SocketEngine.RESPONSE_MESSAGE,
+			ctx.helper.parseExchangeMsg(JSON.stringify(ctx.request.body.message))
+		);
 
 		// 设置响应内容和响应状态码
 		ctx.body = {};
