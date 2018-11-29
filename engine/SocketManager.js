@@ -117,13 +117,17 @@ class SocketManager {
 	 * @memberof SocketManager
 	 */
 	broadcastToClient(id, channel, message) {
+		let isTransportSuccess = false;
 		this.clientList.forEach((value, key, mapObj) => {
 			if (value && key === id) {
 				value.emit(channel, message);
+				isTransportSuccess = true;
 			} else {
 				this.logger.info('Broad to client id:', id, 'not exist!');
 			}
 		});
+
+		return isTransportSuccess;
 	}
 
 	/**
