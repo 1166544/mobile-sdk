@@ -16,6 +16,7 @@ class MessagerController extends Controller {
 			timestamp: { type: 'number' },
 			app: { type: 'string' },
 			target: { type: 'string' },
+			userId: { type: 'string' },
 			sign: { type: 'string' },
 			message: { type: 'object' }
 		};
@@ -28,10 +29,12 @@ class MessagerController extends Controller {
 		let transportMessage = '转发成功';
 		let isTransportSuccess = false;
 		const tragetId = ctx.request.body.target;
+		const userId = ctx.request.body.userId;
 
 		try {
 			isTransportSuccess = socketManager.broadcastToClient(
 				tragetId,
+				userId,
 				SocketEngine.RESPONSE_MESSAGE,
 				ctx.helper.parseExchangeMsg(
 					JSON.stringify(ctx.request.body.message)
