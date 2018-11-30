@@ -9,7 +9,7 @@ module.exports = app => {
 			const message = this.ctx.args[0];
 			this.ctx.logger.info(
 				SocketEngine.REQUEST_MESSAGE + ' :',
-				JSON.stringify(message) + ' : ' + process.pid
+				JSON.stringify(message) + ' : ' + process.pid + '\n'
 			);
 
 			if (message && message.data) {

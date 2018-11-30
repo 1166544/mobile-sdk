@@ -56,9 +56,7 @@ class SocketManager {
 		if (this.clientList.has(id)) {
 			const clientData = this.clientList.get(id);
 
-			if (clientData && clientData.client) {
-				return clientData.client;
-			}
+			return clientData;
 		}
 		return null;
 	}
@@ -75,7 +73,11 @@ class SocketManager {
 
 		if (!this.clientList.has(id)) {
 			this.clientList.set(id, {userId, socket: client});
-			this.logger.info('Connected!', id, userId)
+			this.logger.info(`
+				Connected!!!
+				SocketID: ${id}
+				UserId: ${userId}
+			`);
 		} else {
 			this.logger.info('Add client id:', id, 'has exist!');
 		}
@@ -111,8 +113,8 @@ class SocketManager {
 		let isTransportSuccess = false;
 		const value = this.getClient(id);
 
-		if (value && value.client && value.userId === userId) {
-			value.client.emit(channel, message);
+		if (value && value.socket && value.userId === userId) {
+			value.socket.emit(channel, message);
 			isTransportSuccess = true;
 		} else {
 			this.logger.info('Broadcast to client id:', id, 'not exist!');
@@ -130,9 +132,9 @@ class SocketManager {
 	disconnectClient(id) {
 		const value = this.getClient(id);
 
-		if (value && value.client) {
+		if (value && value.socket) {
 			this.destroyClient(value);
-			value.client.disconnect();
+			value.socket.disconnect();
 			this.logger.info('DisconnectClient client id:', id, 'successfully!');
 		} else {
 			this.logger.info('DisconnectClient client id:', id, 'not exist!');
@@ -151,8 +153,8 @@ class SocketManager {
 			//value - Map对象里每一个键值对的值
 			//key - Map对象里每一个键值对的键
 			//mapObj - Map对象本身
-			if (value && value.client) {
-				value.client.emit(channel, message);
+			if (value && value.socket) {
+				value.socket.emit(channel, message);
 			}
 		});
 	}
