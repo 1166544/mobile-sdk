@@ -179,7 +179,14 @@ exports.socketConfig = {
 | CONNECT | 连接成功 |
 | DISCONNECT | 断开连接 |
 
+# 调用示例:
+```js
+// 发送给其它客户端
+socket.emit(SocketEngine.REQUEST_MESSAGE, helper.parseMsg(SocketEnum.SEND_TO_OTHERS, 'request a client id for others!', metaData));
 
+// 接受重连后更新客户端消息
+socket.emit(SocketEngine.REQUEST_MESSAGE, helper.parseMsg(SocketEnum.RE_CONNECT_AND_UPDATES, 'reconnect socket!', metaData));
+```
 
 ## 配置
 
