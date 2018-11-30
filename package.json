@@ -1,0 +1,21 @@
+{
+  "name": "socket.io-example",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "egg-bin dev --cluster --sticky",
+    "serve": "egg-bin dev --cluster --sticky",
+    "debug": "egg-bin debug --cluster --sticky"
+  },
+  "dependencies": {
+    "crypto-md5": "^1.0.0",
+    "egg": "^2.0.0",
+    "egg-socket.io": "^4.0.0",
+    "egg-validate": "^2.0.2",
+    "socket.io-client": "^2.0.1",
+    "uuid": "^3.3.2"
+  },
+  "devDependencies": {
+    "egg-bin": "^4.3.6"
+  }
+}
