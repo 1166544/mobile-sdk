@@ -124,6 +124,28 @@ class SocketManager {
 	}
 
 	/**
+	 * 断线重连时更新用户ID
+	 *
+	 * @param {*} id
+	 * @param {*} userId
+	 * @memberof SocketManager
+	 */
+	updateUserId(id, userId) {
+		let updateResult = false;
+		const value = this.getClient(id);
+
+		if (value && value.userId) {
+			value.userId = userId;
+			this.logger.info('Client userId updated:', userId);
+			updateResult = true;
+		} else {
+			this.logger.info('Client userId:', userId, 'not exists, update FAIL!');
+		}
+
+		return updateResult;
+	}
+
+	/**
 	 * 主动断开某个客户端
 	 *
 	 * @param {*} id

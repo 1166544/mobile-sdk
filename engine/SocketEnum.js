@@ -10,6 +10,12 @@ module.exports = {
 	/** 发送消息给其它用户 */
 	SEND_TO_OTHERS: 'sendToOthers',
 
+	/** 断线重连更新用户ID */
+	RE_CONNECT_AND_UPDATES: 'reconnectAndUpdates',
+
+	/** 断线重连更新成功 */
+	RE_CONNECT_UPDATED: 'reconnectUpdated',
+
 	/** 拒绝连接 */
 	DENY: 'deny',
 
