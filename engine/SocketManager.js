@@ -53,21 +53,29 @@ class SocketManager {
 	 * @memberof SocketManager
 	 */
 	getClient(id) {
-		return this.clientList.get(id);
+		if (this.clientList.has(id)) {
+			const clientData = this.clientList.get(id);
+
+			if (clientData && clientData.client) {
+				return clientData.client;
+			}
+		}
+		return null;
 	}
 
 	/**
 	 * 添加客户端引用
 	 *
+	 * @param {*} userId
 	 * @param {*} client
 	 * @memberof SocketManager
 	 */
-	addClient(client) {
+	addClient(userId, client) {
 		const id = client.id;
 
 		if (!this.clientList.has(id)) {
-			this.clientList.set(id, client);
-			this.logger.info('Connected!', id)
+			this.clientList.set(id, {userId, socket: client});
+			this.logger.info('Connected!', id, userId)
 		} else {
 			this.logger.info('Add client id:', id, 'has exist!');
 		}
@@ -91,41 +99,24 @@ class SocketManager {
 	}
 
 	/**
-	 * 向所有客户端广播消息
-	 *
-	 * @param {*} channel
-	 * @param {*} message
-	 * @memberof SocketManager
-	 */
-	broacastClients(channel, message) {
-		this.clientList.forEach((value, key, mapObj) => {
-			//value - Map对象里每一个键值对的值
-			//key - Map对象里每一个键值对的键
-			//mapObj - Map对象本身
-			if (value) {
-				value.emit(channel, message);
-			}
-		});
-	}
-
-	/**
 	 * 向指定的客户端发送消息
 	 *
 	 * @param {*} id
+	 * @param {*} userId
 	 * @param {*} channel
 	 * @param {*} message
 	 * @memberof SocketManager
 	 */
-	broadcastToClient(id, channel, message) {
+	broadcastToClient(id, userId, channel, message) {
 		let isTransportSuccess = false;
-		this.clientList.forEach((value, key, mapObj) => {
-			if (value && key === id) {
-				value.emit(channel, message);
-				isTransportSuccess = true;
-			} else {
-				this.logger.info('Broad to client id:', id, 'not exist!');
-			}
-		});
+		const value = this.getClient(id);
+
+		if (value && value.client && value.userId === userId) {
+			value.client.emit(channel, message);
+			isTransportSuccess = true;
+		} else {
+			this.logger.info('Broadcast to client id:', id, 'not exist!');
+		}
 
 		return isTransportSuccess;
 	}
@@ -137,13 +128,31 @@ class SocketManager {
 	 * @memberof SocketManager
 	 */
 	disconnectClient(id) {
+		const value = this.getClient(id);
+
+		if (value && value.client) {
+			this.destroyClient(value);
+			value.client.disconnect();
+			this.logger.info('DisconnectClient client id:', id, 'successfully!');
+		} else {
+			this.logger.info('DisconnectClient client id:', id, 'not exist!');
+		}
+	}
+
+	/**
+	 * 向所有客户端广播消息
+	 *
+	 * @param {*} channel
+	 * @param {*} message
+	 * @memberof SocketManager
+	 */
+	broacastClients(channel, message) {
 		this.clientList.forEach((value, key, mapObj) => {
-			if (value && key === id) {
-				this.destroyClient(value);
-				value.disconnect();
-				this.logger.info('DisconnectClient client id:', id, 'successfully!');
-			} else {
-				this.logger.info('DisconnectClient client id:', id, 'not exist!');
+			//value - Map对象里每一个键值对的值
+			//key - Map对象里每一个键值对的键
+			//mapObj - Map对象本身
+			if (value && value.client) {
+				value.client.emit(channel, message);
 			}
 		});
 	}

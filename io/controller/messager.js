@@ -14,22 +14,29 @@ module.exports = app => {
 
 			if (message && message.data) {
 				switch(message.data.action) {
+					// case SocketEnum.REQUEST_ID:
+					// 	// 向当前用户端发送消息
+					// 	this.ctx.socket.emit(SocketEngine.RESPONSE_MESSAGE, this.ctx.helper.parseMsg(
+					// 		SocketEnum.SAVE_ID,
+					// 		this.ctx.socket.id
+					// 	));
+					// break;
 					case SocketEnum.REQUEST_ID:
-						// 向当前用户端发送消息
-						this.ctx.socket.emit(SocketEngine.RESPONSE_MESSAGE, this.ctx.helper.parseMsg(
-							SocketEnum.SAVE_ID,
-							this.ctx.socket.id
-						));
+						// TODO: 断开重连后重构用户ID链接关系
+
 					break;
 					case SocketEnum.SEND_TO_OTHERS:
 						// 向其它客户端转发消息
 						let socketId = '';
+						let userId = '';
 
 						if (message.meta) {
 							socketId = message.meta.target;
+							userId = message.meta.userId;
 						}
 						socketManager.broadcastToClient(
 							socketId,
+							userId,
 							SocketEngine.RESPONSE_MESSAGE,
 							this.ctx.helper.parseExchangeMsg(message.data.payload)
 						);

@@ -19,9 +19,9 @@ module.exports = {
 	/** 广播 */
 	BROADCAST: 'broadcast',
 
-	/** 广播 */
+	/** 连接成功 */
 	CONNECT: 'connect',
 
-	/** 广播 */
+	/** 断开连接 */
 	DISCONNECT: 'disconnect'
 }
